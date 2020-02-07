@@ -1,0 +1,28 @@
+<form (ngSubmit)="signup()" [formGroup]="formSignup">
+    <input placeholder="Email" formControlName="email">
+    <p *ngIf="formSignup.get('email').invalid && formSignup.get('email').touched">
+        Email is required
+    </p>
+    <br>
+    <input type="password" placeholder="Password" formControlName="password">
+    <br>
+    <div formGroupName="subject">
+        <label>
+            <input formControlName="nodejs" type="checkbox" name="nodejs">Nodejs
+        </label>
+        <label>
+            <input formControlName="angular" type="checkbox" name="angular">Angular
+        </label>
+        <label>
+            <input formControlName="reactjs" type="checkbox" name="reactjs">Reactjs
+        </label>
+    </div>
+
+    <br>
+    <button [disabled]="formSignup.invalid">Submit</button>
+</form>
+
+<code>
+    {{formSignup.value | json}}
+    {{formSignup.controls.email.errors | json}}
+</code>

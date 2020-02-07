@@ -1,0 +1,30 @@
+<form (ngSubmit)="signin(formSignIn);" #formSignIn="ngForm">
+    <input #txtEmail="ngModel" placeholder="Email" ngModel name="email" required email>
+    <p *ngIf="txtEmail.touched && txtEmail.errors?.required">Email is required</p>
+    <p *ngIf="txtEmail.touched && txtEmail.errors?.email">Email is invalid</p>
+    <br>
+    <input #txtPassword="ngModel" type="password" placeholder="Password" ngModel name="password" minlength="6"
+        pattern="[a-z]*">
+    <br>
+    <div ngModelGroup="sports">
+        <label>
+            <input [ngModel]="true" name="foodball" type="checkbox"> Foodball
+        </label>
+
+        <label>
+            <input [ngModel]="true" name="swimming" type="checkbox"> Swimming
+        </label>
+
+        <label>
+            <input [ngModel]="true" name="running" type="checkbox"> Running
+        </label>
+    </div>
+
+    <br>
+    <button [disabled]="formSignIn.invalid">Sign-in</button>
+</form>
+
+
+<p>{{txtEmail.errors | json}}</p>
+<p>{{txtPassword.errors | json}}</p>
+<p>{{formSignIn.value | json}}</p>
